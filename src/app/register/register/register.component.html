@@ -1,0 +1,114 @@
+<main>
+    <div class="wrapper-login">
+        <div class="row">
+            <div class="col-md-5">
+                <app-left-panel [color]="'blue'"></app-left-panel>
+            </div>
+            <div class="col-md-7">
+                <div class="login-form-holder">
+                    <div class="login-form">
+                        <h4>Sign in to ETB</h4>
+                        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label>First Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="" class="form-control" formControlName="firstName">
+                                        <span class="text-danger"
+                                            *ngIf="(myForm.controls.firstName.touched || submitted) && myForm.controls.firstName.errors?.required">
+                                            First Name is required
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label>Last Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="" class="form-control" formControlName="lastName">
+                                        <span class="text-danger"
+                                            *ngIf="(myForm.controls.lastName.touched || submitted) && myForm.controls.lastName.errors?.required">
+                                            Last Name is required
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <label>Company Name<span class="text-danger">*</span></label>
+                                <input type="text" name="" class="form-control" formControlName="companyName">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.companyName.touched || submitted) && myForm.controls.companyName.errors?.required">
+                                    Company Name is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>eBay Page<span class="text-danger">*</span></label>
+                                <input type="text" name="" class="form-control" formControlName="ebayPage">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.ebayPage.touched || submitted) && myForm.controls.ebayPage.errors?.required">
+                                    ebay Page is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Phone Number<span class="text-danger">*</span></label>
+                                <input type="number" name="" class="form-control" formControlName="phoneNumber">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.phoneNumber.touched || submitted) && myForm.controls.phoneNumber.errors?.required">
+                                    Phone Number is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Work Email Address<span class="text-danger">*</span></label>
+                                <input type="text" name="" class="form-control" formControlName="email">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.email.touched || submitted) && myForm.controls.email.errors?.required">
+                                    Email is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Password (at least 8 characters)<span class="text-danger">*</span></label>
+                                <input type="password" name="" class="form-control" formControlName="password">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.password.touched || submitted) && myForm.controls.password.errors?.required">
+                                    Password is required
+                                </span>
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.password.touched || submitted) && !myForm.controls.password.errors?.required && myForm.controls.password.errors?.minlength">
+                                    Password Should of minimum 8 characters
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Confirm Password (at least 8 characters)<span class="text-danger">*</span></label>
+                                <input type="password" name="" class="form-control" formControlName="confirmPassword">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.confirmPassword.touched || submitted) && myForm.controls.confirmPassword.errors?.required">
+                                    Confirm Password is required
+                                </span>
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.confirmPassword.touched || submitted) && myForm.controls.confirmPassword.errors?.passwordMismatch">
+                                    Password doesn't match
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-blue">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

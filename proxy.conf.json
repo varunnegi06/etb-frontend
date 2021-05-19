@@ -1,0 +1,13 @@
+{
+    "/api": {
+       "target":  {
+         "host": "198.58.104.60",
+         "protocol": "https:",
+         "port": 3001
+       },
+       "secure": false,
+       "changeOrigin": true,
+       "logLevel": "info"
+    }
+  }
+  

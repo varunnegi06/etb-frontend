@@ -1,0 +1,172 @@
+<main>
+    <div>
+        <ng-template #content let-modal>
+            <div class="modal-body" class="confirmation-modal">
+                <h4 class="modal-title" id="modal-basic-title" style="text-align: center;margin: 15px;">Registration Successful!</h4>
+                <form>
+                    <div class="form-group" style="text-align: center;">
+                        <!-- Check your email to view your receipt.<br> -->
+                        You will now be redirected to ETB Login Page.
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <ng-template #errorContent let-modal>
+            <div class="modal-body" class="confirmation-modal">
+                <h4 class="modal-title" id="modal-basic-title" style="text-align: center;margin: 15px;">Error!</h4>
+                <form>
+                    <div class="form-group" style="text-align: center;">
+                        <!-- Check your email to view your receipt.<br> -->
+                        Processing Error occured. Please try again.
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+
+    </div>
+    <div class="wrapper-login">
+        <div id="mydiv" *ngIf="showLoader">
+            <img src="../../../assets/images/loader.gif" class="ajax-loader"/>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <app-left-panel [color]="'blue'"></app-left-panel>
+            </div>
+            <div class="col-md-7">
+                <div class="login-form-holder">
+                    <div class="login-form">
+                        <h4>Sign in to ETB</h4>
+                        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm,content,errorContent)">
+                            <div class="form-row">
+                                <label>Select a subscription plan<span class="text-danger">*</span></label>
+                                <div class="w100 fl mb15">
+                                    <input type="button" class="ebtn mr5" [ngClass]="activePlan1?'btn-blue':'btn-grey'"
+                                        (click)="selectPaymentPlan(15,'plan1')" value="Monthly for $15">
+                                    <input type="button" class="ebtn ml5" [ngClass]="activePlan2?'btn-blue':'btn-grey'"
+                                        (click)="selectPaymentPlan(150,'plan2')" value="Monthly for $150">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Billing Address<span class="text-danger">*</span></label>
+                                <input type="text" name="" class="form-control" formControlName="address1">
+                                <span class="text-danger"
+                                    *ngIf="(myForm.controls.address1.touched || submitted) && myForm.controls.address1.errors?.required">
+                                    Address is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <label>Billing Address 2</label>
+                                <input type="text" name="" class="form-control" formControlName="address2">
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-row">
+                                        <label>City<span class="text-danger">*</span></label>
+                                        <input type="text" name="" class="form-control" formControlName="city">
+                                        <span class="text-danger"
+                                            *ngIf="(myForm.controls.city.touched || submitted) && myForm.controls.city.errors?.required">
+                                            City is required
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-row">
+                                        <label>State<span class="text-danger">*</span></label>
+                                        <input type="text" name="" class="form-control" formControlName="state">
+                                        <span class="text-danger"
+                                            *ngIf="(myForm.controls.state.touched || submitted) && myForm.controls.state.errors?.required">
+                                            State is required
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-row">
+                                        <label>Zip<span class="text-danger">*</span></label>
+                                        <input type="text" name="" id="sq-postal-code" class="form-control">
+                                        <span class="text-danger"
+                                            *ngIf="postalCode">
+                                            Zip is required
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="postalCodeValid">
+                                            Zip is Invalid
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="w100 fl">Credit/Debit card number <span class="text-danger">*</span><img class="fr"
+                                        src="../../../assets/images/cards.png" alt="card"></label>
+                                <input type="text" name="" id="sq-card-number" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="cardNumber">
+                                    Card number is required
+                                </span>
+                                <span class="text-danger"
+                                    *ngIf="cardNumberValid">
+                                    Card number is Invalid
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label>CVV<span class="text-danger">*</span></label>
+                                        <input type="password" name="" id="sq-cvv" class="form-control">
+                                        <span class="text-danger"
+                                            *ngIf="cvv">
+                                            CVV is required
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="cvvValid">
+                                            CVV is Invalid
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label>Expiration Date<span class="text-danger">*</span></label>
+                                        <input type="text" name="" id="sq-expiration-date" class="form-control" >
+                                        <span class="text-danger"
+                                            *ngIf="expirationDate">
+                                            Expiration Date is required
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="expirationDateValid">
+                                            Expiration Date is Invalid
+                                        </span>
+                                        <div class="margin-b-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label><input type="checkbox"> I agree to the terms of services and privacy
+                                    policy.</label>
+                                <p>
+                                    By singhing up, you agree to have fully read your <br>
+                                    <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>
+                                </p>
+                            </div>
+
+                            <div class="form-row mt15">
+                                <button type="submit" class="btn btn-blue">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

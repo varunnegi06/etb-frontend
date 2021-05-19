@@ -1,0 +1,70 @@
+<main>
+    <div>
+        <ng-template #confirmationContent let-modal>
+            <div class="modal-body" class="confirmation-modal">
+                <h4 class="modal-title" id="modal-basic-title" style="text-align: center;margin: 15px;">User Registered!</h4>
+                <form>
+                    <div class="form-group" style="text-align: center;">
+                        This email address is already a registered user.<br><br>
+                        Please login with your credentials.<br>
+                        If you forgot your password, Please click "Forgot Password" to update your credentials
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="button" (click)="close()" class="btn btn-red" style="border: white 1px solid;color: white;margin-bottom: 5px;">Close</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <span #anchorClick (click)="open(confirmationContent)"></span>
+
+    </div>
+    <div class="wrapper-login">
+        <div class="row">
+            <div id="mydiv" *ngIf="showLoader">
+                <img src="../../../assets/images/loader.gif" class="ajax-loader" />
+            </div>
+            <div class="col-md-5">
+                <app-left-panel [color]="'red'"></app-left-panel>
+            </div>
+            <div class="col-md-7">
+                <div class="login-form-holder">
+                    <div class="login-form">
+                        <h4>Sign in to ETB</h4>
+                        <form [formGroup]="myLoginForm" (ngSubmit)="loginMethod(myLoginForm)">
+                            <div *ngIf="showErrorMessage" class="form-row">
+                                <span class="text-danger">Invalid email address or password.Please try again</span>
+                            </div>
+                            <div class="form-row">
+                                <label>Email Address<span class="text-danger">*</span></label>
+                                <input formControlName="userName" type="text" name="" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="(myLoginForm.controls.userName.touched || submitted) && myLoginForm.controls.userName.errors?.required">
+                                    Email Address is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                            </div>
+
+                            <div class="form-row forgot-password-holder">
+                                <label>Password<span class="text-danger">*</span></label>
+                                <input formControlName="password" type="password" name="" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="(myLoginForm.controls.password.touched || submitted) && myLoginForm.controls.password.errors?.required">
+                                    Password is required
+                                </span>
+                                <div class="margin-b-div"></div>
+                                <a href="/forgot/step/1">Forgot password?</a>
+                            </div>  
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-red">Sign In</button>
+                            </div>
+
+                            <div class="subscription-text">No subscription? <a href="/register"><span>Purchase one
+                                        today!</span></a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

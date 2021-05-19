@@ -1,0 +1,50 @@
+<main>
+    <div id="mydiv" *ngIf="showLoader">
+        <img src="../../../assets/images/loader.gif" class="ajax-loader"/>
+    </div>
+    <div class="wrapper-login">
+        <div class="row">
+            <div class="payment-form">
+                <div style="max-width: 550px;margin: auto;">
+                    <h4 style="margin-bottom: 20px;">Payment</h4>
+                    <form (ngSubmit)="onSubmit()">
+
+
+                        <div class="form-row">
+                            <label class="w100 fl">Credit/Debit card number <span class="text-danger">*</span><img
+                                    class="fr" src="../../../assets/images/cards.png" alt="card"></label>
+                            <input type="text" name="" id="sq-card-number" class="form-control">
+                            <div class="margin-b-div"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-row">
+                                    <label>CVV<span class="text-danger">*</span></label>
+                                    <input type="password" name="" id="sq-cvv" class="form-control">
+                                    <div class="margin-b-div"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-row">
+                                    <label>Expiration Date<span class="text-danger">*</span></label>
+                                    <input type="text" name="" id="sq-expiration-date" class="form-control">
+                                    <div class="margin-b-div"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <label class="w100 fl">Zip Code</label>
+                            <input type="text" name="" id="sq-postal-code" class="form-control">
+                        </div>
+
+                        <div class="form-row mt15">
+                            <button type="submit" class="btn btn-blue">Pay ${{planAmount}} </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

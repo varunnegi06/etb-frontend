@@ -1,0 +1,16 @@
+.profile-nav {
+    position: fixed;
+    right: 30px;
+    width: auto;
+    top: 30px;
+}
+
+.profile-nav > ul {
+    width: auto;
+    float: left;
+}
+
+.profile-nav > ul > li {
+    display: inline-block;
+    padding: 0px 10px;
+}

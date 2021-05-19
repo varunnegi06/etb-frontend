@@ -1,0 +1,40 @@
+<main>
+    <div class="wrapper-login">
+        <div class="row">
+            <div id="mydiv" *ngIf="showLoader">
+                <img src="../../../assets/images/loader.gif" class="ajax-loader"/>
+            </div>
+            <div class="col-md-5">
+                <app-left-panel [color]="'red'"></app-left-panel>
+            </div>
+            <div class="col-md-7">
+                <div class="login-form-holder">
+                    <div class="login-form">
+                        <h4>Forgot Password ?</h4>
+                        <div *ngIf="showErrorMessage" class="form-row">
+                            <span class="text-danger">Email address does not exist</span>
+                        </div>
+                        <form [formGroup]="forgotForm" (ngSubmit)="sendCode(forgotForm)">
+                            <div class="form-row">
+                                <label>Email Address</label>
+                                <input formControlName="email" type="text" name="" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="(forgotForm.controls.email.touched || submitted) && forgotForm.controls.email.errors?.required">
+                                    Valid Email Address is required
+                                </span>
+                            </div>
+                            <div class="margin-b-div"></div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-red" [disabled]="!forgotForm.valid">Send
+                                    Verification Code</button>
+                            </div>
+                            <div class="margin-b-div"></div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

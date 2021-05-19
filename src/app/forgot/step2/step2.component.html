@@ -1,0 +1,57 @@
+<main>
+    <div class="wrapper-login">
+        <div id="mydiv" *ngIf="showLoader">
+            <img src="../../../assets/images/loader.gif" class="ajax-loader"/>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <app-left-panel [color]="'red'"></app-left-panel>
+            </div>
+            <div class="col-md-7">
+                <div class="login-form-holder">
+                    <div class="login-form">
+                        <h4>Forgot Password ?</h4>
+                        <div *ngIf="showErrorMessage" class="form-row">
+                            <span class="text-danger">Verification code is not valid</span>
+                        </div>
+                        <form [formGroup]="resetForm" (ngSubmit)="resetPassword(resetForm)">
+
+                            <div class="form-row">
+                                <label>Verification Code</label>
+                                <input type="number" formControlName="verifyCode" name="" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="(resetForm.controls.verifyCode.touched || submitted) && resetForm.controls.verifyCode.errors?.required">
+                                    Verification Code is required
+                                </span>
+                            </div>
+                            <div class="margin-b-div"></div>
+
+                            <div class="form-row">
+                                <label>New Password</label>
+                                <input type="password" formControlName="newPassword" name="" class="form-control">
+                                <span class="text-danger"
+                                    *ngIf="(resetForm.controls.newPassword.touched || submitted) && resetForm.controls.newPassword.errors?.required">
+                                    New Password is required
+                                </span>
+                            </div>
+                            <div class="margin-b-div"></div>
+
+                            <div class="form-row">
+                                <label>Re-Type New Password</label>
+                                <input type="password" formControlName="confirmPassword" name="" class="form-control">
+                                <div *ngIf="resetForm.hasError('notSame')" class="form-row">
+                                    <span class="text-danger">New password and Confirm password didn't match</span>
+                                </div>
+                            </div>
+                            <div class="margin-b-div"></div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-red">Reset Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
